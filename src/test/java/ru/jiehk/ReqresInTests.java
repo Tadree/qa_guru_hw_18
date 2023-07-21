@@ -6,7 +6,8 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.*;
 
-public class ReqresInTests {
+public class ReqresInTests extends TestBase{
+
     @Test
     void registrationTest() {
         String data = "{ \"email\": \"eve.holt@reqres.in\", \"password\": \"pistol\" }";
@@ -15,7 +16,7 @@ public class ReqresInTests {
                 .contentType(JSON)
                 .body(data)
                 .when()
-                .post("https://reqres.in/api/register")
+                .post("/register")
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -31,7 +32,7 @@ public class ReqresInTests {
                 .contentType(JSON)
                 .body(data)
                 .when()
-                .post("https://reqres.in/api/register")
+                .post("/register")
                 .then()
                 .log().all()
                 .statusCode(400)
@@ -46,7 +47,7 @@ public class ReqresInTests {
                 .contentType(JSON)
                 .body(data)
                 .when()
-                .post("https://reqres.in/api/register")
+                .post("/register")
                 .then()
                 .log().all()
                 .statusCode(400)
@@ -59,7 +60,7 @@ public class ReqresInTests {
                 .log().all()
                 .param("page", 1)
                 .when()
-                .get("https://reqres.in/api/users")
+                .get("/users")
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -73,7 +74,7 @@ public class ReqresInTests {
                 .log().all()
                 .param("page", 100)
                 .when()
-                .get("https://reqres.in/api/users")
+                .get("/users")
                 .then()
                 .log().all()
                 .statusCode(200)
